@@ -1,13 +1,21 @@
-import { BsFacebook } from "react-icons/bs";
-import Footer from "./Components/Footer/Footer";
+import { Route, createBrowserRouter,createRoutesFromElements,RouterProvider } from "react-router-dom";
+import LayOut from "./LayOut";
+import HomePage from "./pages/HomePage";
 
 
 function App (){
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path='' element={<LayOut />}>
+            <Route path='/' element={<HomePage />} />
+        </Route>
+    )
+)
+
   return(
     <>
-      <div>
-        <Footer />
-      </div>
+      <RouterProvider router={router} />
     </>
   )
 };
