@@ -42,9 +42,9 @@ function Header() {
                         </button>
                     </li>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/About">About Us</Link></li>
-                    <li><Link to="/Contact">Contact Us</Link></li>
-                    <li><Link to="/Courses">All Courses</Link></li>
+                    <li><Link to="/about">About Us</Link></li>
+                    <li><Link to="/contact">Contact Us</Link></li>
+                    <li><Link to="/courses">All Courses</Link></li>
       
                     </ul>
                 </div>
