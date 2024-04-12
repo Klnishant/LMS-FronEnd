@@ -3,6 +3,7 @@ import LayOut from "./LayOut";
 import HomePage from "./pages/HomePage";
 import Denied from "./pages/Denied";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 
 function App (){
@@ -13,6 +14,7 @@ function App (){
             <Route path='/' element={<HomePage />} />
             <Route path="/denied" element={<Denied />} />
             <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
         </Route>
     )
 )
