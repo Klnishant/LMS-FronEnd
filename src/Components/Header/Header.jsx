@@ -1,9 +1,14 @@
 import React from 'react'
 import { FiMenu } from "react-icons/fi";
 import {AiFillCloseCircle}  from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux"
 
 function Header() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector((state)=> state?.auth?.isLoggedIn);
+    const role = useSelector((state)=>state?.auth?.role);
 
     const changeWidth = ()=> {
         const drawerSide = document.getElementsByClassName("drawer-side");
@@ -16,6 +21,16 @@ function Header() {
 
         const drawerSide = document.getElementsByClassName("drawer-side");
         drawerSide[0].style.width = '0';
+    }
+
+    const handleLogOut = async (e)=>{
+        e.preventDefault();
+        const res = await dispatch(logOut());
+
+        if (res?.payload?.success) {
+            navigate("/");
+        }
+
     }
   return (
     <>
