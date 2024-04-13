@@ -57,9 +57,44 @@ function Header() {
                         </button>
                     </li>
                     <li><Link to="/">Home</Link></li>
+                    {isLoggedIn && role=="ADMIN" && (
+                        <li>
+                            <Link to="/dasboard">Dasboard</Link>
+                        </li>
+                    )}
+                    {isLoggedIn && role=="ADMIN" && (
+                        <li>
+                            <Link to="/create/course">Create Course</Link>
+                        </li>
+                    )}
                     <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/contact">Contact Us</Link></li>
                     <li><Link to="/courses">All Courses</Link></li>
+
+                    {!isLoggedIn &&(
+                        <li className='absolute bottom-4'>
+                            <div className='w-full flex item-center justify-center'>
+                                <button className='btn-primary px-4 py-1 font-semibold rounded-md w-full'>
+                                    <Link to="/logIn">LogIn</Link>
+                                </button>
+                                <button className='btn-secondary px-4 py-1 font-semibold rounded-md w-full'>
+                                    <Link to="/signUp">SignUp</Link>
+                                </button>
+                            </div>
+                        </li>
+                    )}
+                    {isLoggedIn &&(
+                        <li className='absolute bottom-4'>
+                            <div className='w-full flex item-center justify-center'>
+                                <button className='btn-primary px-4 py-1 font-semibold rounded-md w-full'>
+                                    <Link to="/profile">Profile</Link>
+                                </button>
+                                <button className='btn-secondary px-4 py-1 font-semibold rounded-md w-full'>
+                                    <Link onClick={handleLogOut}>LogOut</Link>
+                                </button>
+                            </div>
+                        </li>
+                    )}
       
                     </ul>
                 </div>
