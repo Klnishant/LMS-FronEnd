@@ -7,16 +7,15 @@ const initialState = {
     role:localStorage.getItem('role') || "",
     data:localStorage.getItem('data') || {}
 };
-console.log(initialState.data);
 
 export const createAccount = createAsyncThunk("/auth/signup", async (data)=> {
     try {
         const res = await axiosInstance.post("/user/register",data);
-        toast.promise(res,{
-            loading:"wait your account is creating",
-            success: "Account created successfully",
-            error:"Failed to create account",
-        });
+        // toast.promise(res,{
+        //     loading:"wait your account is creating",
+        //     success: "Account created successfully",
+        //     error:"Failed to create account",
+        // });
         
         return res.data;
     } catch (err) {
@@ -27,6 +26,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data)=> {
 export const logIn = createAsyncThunk("/auth/signIn", async (data)=> {
     try {
         const res = await axiosInstance.post("/user/logIn",data);
+        toast.success("Logged In Successfully");
         // toast.promise(res,{
         //     loading:"Wait authentication in progress",
         //     success: "Log in successfully",

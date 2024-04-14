@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
+import NotFound from "./pages/NotFound";
 
 
 function App (){
@@ -19,6 +20,8 @@ function App (){
             <Route path="/contact" element={<Contact />} />
             <Route path="/logIn" element={<LogIn />} />
             <Route path="/signUp" element={<SignUp />} />
+
+            <Route path="*" element={<NotFound />} />
         </Route>
     )
 )

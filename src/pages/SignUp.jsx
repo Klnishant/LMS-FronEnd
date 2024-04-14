@@ -42,7 +42,7 @@ function SignUp() {
     }
   }
 
-  const cresteNewAccount = (e)=> {
+  const cresteNewAccount = async (e)=> {
     e.preventDefault();
 
     if (!fullName || !email || !password) {
@@ -56,7 +56,7 @@ function SignUp() {
     formData.append("password",signUpData.password);
     formData.append("avatar",signUpData.avatar);
 
-    const res = dispatch(createAccount(formData));
+    const res = await dispatch(createAccount(formData));
 
     if (res?.payload?.success) {
       navigate("/");
