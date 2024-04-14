@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage";
 import Denied from "./pages/Denied";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp";
 
 
 function App (){
@@ -15,6 +17,8 @@ function App (){
             <Route path="/denied" element={<Denied />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/logIn" element={<LogIn />} />
+            <Route path="/signUp" element={<SignUp />} />
         </Route>
     )
 )

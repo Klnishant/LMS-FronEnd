@@ -3,6 +3,7 @@ import { FiMenu } from "react-icons/fi";
 import {AiFillCloseCircle}  from "react-icons/ai";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
+import { logOut } from '../../Redux/Slices/AuthSlice';
 
 function Header() {
     const dispatch = useDispatch();
@@ -26,10 +27,8 @@ function Header() {
     const handleLogOut = async (e)=>{
         e.preventDefault();
         const res = await dispatch(logOut());
-
-        if (res?.payload?.success) {
-            navigate("/");
-        }
+        if (res?.payload?.success)
+        navigate("/");
 
     }
   return (
