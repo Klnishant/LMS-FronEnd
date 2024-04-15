@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
+import { getProfile } from '../../Redux/Slices/AuthSlice';
 
 function Profile() {
     const dispatch = useDispatch();
-    const userData = useSelector((state)=>state?.auth?.data);
-
+    const data = useSelector((state)=>state?.auth?.data);
+    let userData = data;
+    if (typeof(data) == 'string') {
+        userData = JSON.parse(data);
+    }
+    
   return (
     <>
         <div className="min-h-[90vh] flex items-center justify-center">

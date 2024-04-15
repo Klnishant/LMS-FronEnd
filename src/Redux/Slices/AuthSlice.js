@@ -56,28 +56,30 @@ export const logOut = createAsyncThunk("/auth/signOut",async ()=> {
 export const updateProfile = createAsyncThunk("/auth/update/user", async (data)=> {
     try {
         const res = await axiosInstance.patch("/user/update/profile",data);
-        toast.promise(res,{
-            loading:"Wait User updation in progress",
-            success: (data)=> data?.data?.message,
-            error:"Failed to update profile",
-        });
-        return (await res).data;
+        toast.success("profile updated successfully");
+        // toast.promise(res,{
+        //     loading:"Wait User updation in progress",
+        //     success: (data)=> data?.data?.message,
+        //     error:"Failed to update profile",
+        // });
+        return  res.data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
 });
 
-const getProfile = createAsyncThunk("/auth/get/profile", async ()=>{
+export const getProfile = createAsyncThunk("/auth/get/profile", async ()=>{
     try {
-        const res = await axiosInstance.get("/user/profile",{});
-        toast.promise(res,{
-            loading:"Wait while profile is getting",
-            success: (data)=>{
-                return data?.data?.message;
-            },
-            error:"Failed to fetching profile",
-        });
-        return (await res).data;
+        const res = await axiosInstance.get("/user/profile");
+        toast.success("Profile Fetched successfully");
+        // toast.promise(res,{
+        //     loading:"Wait while profile is getting",
+        //     success: (data)=>{
+        //         return data?.data?.message;
+        //     },
+        //     error:"Failed to fetching profile",
+        // });
+        return res.data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }
@@ -88,7 +90,7 @@ const authSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers: (builder)=>{
-        const logInBuider = builder.addCase(logIn.fulfilled,(state,action)=> {
+        builder.addCase(logIn.fulfilled,(state,action)=> {
             localStorage.setItem("data",JSON.stringify(action?.payload?.data?.user));
             localStorage.setItem("isLoggedIn",true);
             localStorage.setItem("role",action?.payload?.data?.user?.role);
@@ -102,14 +104,15 @@ const authSlice = createSlice({
             state.data = {};
             state.role = "";
         })
-        builder.addCase(getProfile.fulfilled,(state,action)=>{
-            if(!action?.payload?.user) return;
-            localStorage.setItem("data",JSON.stringify(action?.payload?.data?.user));
+        builder.addCase(updateProfile.fulfilled,(state,action)=>{
+            console.log(action.payload);
+            if(!action?.payload?.data) return;
+            localStorage.setItem("data",JSON.stringify(action?.payload?.data));
             localStorage.setItem("isLoggedIn",true);
-            localStorage.setItem("role",action?.payload?.data?.user?.role);
+            localStorage.setItem("role",action?.payload?.data?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.data?.user;
-            state.role = action?.payload?.data.user?.role;
+            state.data = action?.payload?.data;
+            state.role = action?.payload?.data?.role;
         })
     }
 });
