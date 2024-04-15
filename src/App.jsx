@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
+import CreateCourse from "./pages/Course/CreateCourse";
 
 
 function App (){
@@ -24,6 +25,7 @@ function App (){
             <Route path="/signUp" element={<SignUp />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit/profile" element={<EditProfile />} />
+            <Route path="/create/course" element={<CreateCourse />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
