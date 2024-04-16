@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
 import CreateCourse from "./pages/Course/CreateCourse";
+import CourseList from "./pages/Course/CourseList";
 
 
 function App (){
@@ -26,6 +27,7 @@ function App (){
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit/profile" element={<EditProfile />} />
             <Route path="/create/course" element={<CreateCourse />} />
+            <Route path="/courses" element={<CourseList />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
