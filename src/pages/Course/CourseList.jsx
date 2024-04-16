@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCourses } from '../../Redux/Slices/courseSlice';
-import { useNavigate } from 'react-router-dom';
 import CourseCard from '../../Components/Cards/CourseCard';
 
 function CourseList() {

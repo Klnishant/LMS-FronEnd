@@ -1,4 +1,6 @@
 import { Route, createBrowserRouter,createRoutesFromElements,RouterProvider } from "react-router-dom";
+
+
 import LayOut from "./LayOut";
 import HomePage from "./pages/HomePage";
 import Denied from "./pages/Denied";
@@ -11,6 +13,7 @@ import Profile from "./pages/User/Profile";
 import EditProfile from "./pages/User/EditProfile";
 import CreateCourse from "./pages/Course/CreateCourse";
 import CourseList from "./pages/Course/CourseList";
+import CourseDetails from "./pages/Course/CourseDetails";
 
 
 function App (){
@@ -28,6 +31,7 @@ function App (){
             <Route path="/edit/profile" element={<EditProfile />} />
             <Route path="/create/course" element={<CreateCourse />} />
             <Route path="/courses" element={<CourseList />} />
+            <Route path="/course/description" element={<CourseDetails />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
