@@ -14,6 +14,7 @@ import EditProfile from "./pages/User/EditProfile";
 import CreateCourse from "./pages/Course/CreateCourse";
 import CourseList from "./pages/Course/CourseList";
 import CourseDetails from "./pages/Course/CourseDetails";
+import CheckOut from "./pages/Payment/CheckOut";
 
 
 function App (){
@@ -32,6 +33,7 @@ function App (){
             <Route path="/create/course" element={<CreateCourse />} />
             <Route path="/courses" element={<CourseList />} />
             <Route path="/course/description" element={<CourseDetails />} />
+            <Route path="/checkout" element={<CheckOut />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
