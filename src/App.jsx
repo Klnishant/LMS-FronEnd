@@ -17,6 +17,8 @@ import CourseDetails from "./pages/Course/CourseDetails";
 import CheckOut from "./pages/Payment/CheckOut";
 import CheckOutSuccess from "./pages/Payment/CheckOutSuccess";
 import CheckOutFailure from "./pages/Payment/CheckOutFailure";
+import DisplayLectures from "./pages/DashBoard/DisplayLectures";
+import AddLecture from "./pages/DashBoard/AddLecture";
 
 
 function App (){
@@ -38,6 +40,8 @@ function App (){
             <Route path="/checkout" element={<CheckOut />} />
             <Route path="/checkout/success" element={<CheckOutSuccess />} />
             <Route path="checkout/fail" element={<CheckOutFailure />} />
+            <Route path="/course/displaylectures" element={<DisplayLectures />} />
+            <Route path="/add/lecture" element={<AddLecture />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
