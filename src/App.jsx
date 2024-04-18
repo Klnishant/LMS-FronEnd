@@ -15,6 +15,8 @@ import CreateCourse from "./pages/Course/CreateCourse";
 import CourseList from "./pages/Course/CourseList";
 import CourseDetails from "./pages/Course/CourseDetails";
 import CheckOut from "./pages/Payment/CheckOut";
+import CheckOutSuccess from "./pages/Payment/CheckOutSuccess";
+import CheckOutFailure from "./pages/Payment/CheckOutFailure";
 
 
 function App (){
@@ -34,6 +36,8 @@ function App (){
             <Route path="/courses" element={<CourseList />} />
             <Route path="/course/description" element={<CourseDetails />} />
             <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/checkout/success" element={<CheckOutSuccess />} />
+            <Route path="checkout/fail" element={<CheckOutFailure />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>
