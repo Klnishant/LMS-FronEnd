@@ -4,7 +4,11 @@ function CourseDetails() {
     const {state} = useLocation();
     const navigate = useNavigate();
 
-    const {role,data} = useSelector((state)=>state?.auth);
+    let {role,data} = useSelector((state)=>state?.auth);
+
+    if (typeof(data)=="string") {
+        data = JSON.parse(data);
+    }
 
   return (
     <>

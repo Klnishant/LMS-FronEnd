@@ -62,7 +62,7 @@ const paymentSlice = createSlice({
             console.log(state.subscription_id);
             localStorage.setItem("subscriptioId",action?.payload?.data);
         })
-        .addCase(verifySubscription.fulfilled, async(state,action)=> {
+        .addCase(verifySubscription.fulfilled,(state,action)=> {
             console.log(action.payload);
             state.isPaymentVerified=true;
         })
