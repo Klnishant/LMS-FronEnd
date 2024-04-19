@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { addLectures } from '../../Redux/Slices/lectureSlice';
 import { AiOutlineArrowLeft } from "react-icons/ai"
+import { PiVideoThin } from "react-icons/pi";
 
 function AddLecture() {
     const courseDetails = useLocation().state;
@@ -100,7 +101,7 @@ function AddLecture() {
                          />
                      ) : (
                         <div className="h-48 border flex items-center justify-center cursor-pointer">
-                            <label htmlFor="lecture" className="font-semibold text-cl cursor-pointer">Choose Your Video</label>
+                            <label htmlFor="lecture" className="font-semibold text-cl cursor-pointer h-full w-full"><PiVideoThin className='h-full w-full' /></label>
                             <input type="file" id='lecture' name='lecture' onChange={handleVideo} className='hidden' accept='video/*' />
                         </div>
                      )}

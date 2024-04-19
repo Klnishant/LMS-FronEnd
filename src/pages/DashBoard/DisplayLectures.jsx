@@ -16,7 +16,7 @@ function DisplayLectures() {
 
     const [currentVideo,setCurrentVideo] = useState(0);
 
-    const handleDelete = async (lectureId,courseId)=> {
+    const handleDelete = async (courseId,lectureId)=> {
         console.log(lectureId,courseId);
         const res = await dispatch(deleteLecture({courseId:courseId,lectureId:lectureId}));
         console.log(res);
@@ -38,7 +38,7 @@ function DisplayLectures() {
             {(lectures && lectures.length>0) ?
             (<div className="flex justify-center gap-10 w-full">
                 <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
-                    <video src={lectures && lectures[currentVideo]?.lectures?.secure_url}
+                    <video src={lectures && lectures[currentVideo]?.lecture?.secure_url}
                      controls
                      disablePictureInPicture
                      muted

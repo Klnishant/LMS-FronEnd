@@ -46,6 +46,17 @@ export const verifySubscription = createAsyncThunk("/verify", async (data)=> {
     }
 });
 
+export const getAllPayment = createAsyncThunk("/get/all/payment", async ()=>{
+    try {
+        const res = await axiosInstance.get("/payment/get/all/payment?count=100");
+        toast.success("Payment Details Fetched successfully");
+
+        return res.data;
+    } catch (error) {
+        toast.error(error.message);
+    }
+})
+
 const paymentSlice = createSlice({
     name:"payment",
     initialState,
@@ -60,11 +71,17 @@ const paymentSlice = createSlice({
             console.log(action.payload.data);
             state.subscription_id = action?.payload?.data
             console.log(state.subscription_id);
-            localStorage.setItem("subscriptioId",action?.payload?.data);
+            localStorage.setItem("subscriptioId",action?.payload?.data?.allPayments);
         })
         .addCase(verifySubscription.fulfilled,(state,action)=> {
             console.log(action.payload);
             state.isPaymentVerified=true;
+        })
+        .addCase(getAllPayment.fulfilled,(state,action)=>{
+            console.log(action);
+            state.allPayments=action?.payload?.data;
+            state.finalMonth=action?.payload?.finalMonth;
+            state.monthlySalesRecord=action?.payload?.data?.monthlySale?.item;
         })
     }
 });

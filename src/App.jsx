@@ -19,6 +19,7 @@ import CheckOutSuccess from "./pages/Payment/CheckOutSuccess";
 import CheckOutFailure from "./pages/Payment/CheckOutFailure";
 import DisplayLectures from "./pages/DashBoard/DisplayLectures";
 import AddLecture from "./pages/DashBoard/AddLecture";
+import DashBoard from "./pages/DashBoard/DashBoard";
 
 
 function App (){
@@ -42,6 +43,7 @@ function App (){
             <Route path="checkout/fail" element={<CheckOutFailure />} />
             <Route path="/course/displaylectures" element={<DisplayLectures />} />
             <Route path="/add/lecture" element={<AddLecture />} />
+            <Route path="/dasboard" element={<DashBoard />} />
 
             <Route path="*" element={<NotFound />} />
         </Route>

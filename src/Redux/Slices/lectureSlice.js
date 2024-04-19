@@ -38,8 +38,12 @@ export const getLectures = createAsyncThunk("/get/lectures", async (data)=>{
 
 export const deleteLecture = createAsyncThunk("/delete/lecture", async(data)=>{
     try {
+        console.log(data);
         const res = await axiosInstance.delete(`/course/delete/lecture/${data?.lectureId}/c/${data?.courseId}`);
+        console.log(res);
         res.success("Lecture deleted successfully");
+
+        return res.data;
     } catch (error) {
         toast.error(error.message);
     }
