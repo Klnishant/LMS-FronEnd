@@ -81,7 +81,7 @@ const paymentSlice = createSlice({
             console.log(action);
             state.allPayments=action?.payload?.data;
             state.finalMonth=action?.payload?.finalMonth;
-            state.monthlySalesRecord=action?.payload?.data?.monthlySale?.item;
+            state.monthlySalesRecord=action?.payload?.data?.monthlySale;
         })
     }
 });

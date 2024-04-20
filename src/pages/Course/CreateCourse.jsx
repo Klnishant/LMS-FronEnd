@@ -64,7 +64,7 @@ function CreateCourse() {
         const res = await dispatch(createCourse(formData));
 
         if (res?.payload?.success) {
-            navigate("/course");
+            navigate("/courses");
         }
     }
   return (

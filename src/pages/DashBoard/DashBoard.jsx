@@ -9,16 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getStats } from '../../Redux/Slices/statsSlice';
 import { getAllPayment } from '../../Redux/Slices/paymentSlice';
-import { getCourses } from "../../Redux/Slices/courseSlice";
+import { deleteCourse, getCourses } from "../../Redux/Slices/courseSlice";
 ChartJS.register(ArcElement, BarElement, CategoryScale, Legend, LinearScale, Title, Tooltip);
 
 function DashBoard() {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const data = useSelector((state)=>state?.stats);
-    const {allPayments,monthlySalesRecord} = useSelector((state)=>state?.payment);
+    const {allPayments} = useSelector((state)=>state?.payment);
     console.log(data);
-    console.log(allPayments,monthlySalesRecord);
+    console.log(allPayments);
+    const monthlySalesRecord = [1, 3, 7, 8, 10, 0, 5]
 
     const userData = {
         labels:["RegisteredUser","EnrolledUser"],
@@ -53,7 +55,7 @@ function DashBoard() {
 
     const handleDelete = async (id)=>{
         if (window.confirm("Are you sure to delete course")) {
-            const res = await dispatch(id);
+            const res = await dispatch(deleteCourse(id));
             console.log(res);
             if (res?.payload?.success) {
                 await dispatch(getCourses());
@@ -147,8 +149,8 @@ function DashBoard() {
                                 <td>{course?.category}</td>
                                 <td>{course?.createdBy}</td>
                                 <td>{course?.numberOfLectures}</td>
-                                <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
-                                    <textarea value={course?.description} readOnly className="w-28 h-auto bg-transparent resize-none"></textarea>
+                                <td className="max-w-30 overflow-hidden text-ellipsis whitespace-nowrap">
+                                    <textarea value={course?.description} readOnly className="w-full h-auto bg-transparent resize-none"></textarea>
                                 </td>
                                 <td className="flex items-center gap-4">
                                     <button onClick={()=>{navigate("/course/displaylectures",{state:{...course}})}}
@@ -156,7 +158,7 @@ function DashBoard() {
                                     >
                                         <BsCollectionPlayFill />
                                     </button>
-                                    <button onClick={()=>{handleDelete(course?._id)}} className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold">
+                                    <button onClick={()=>handleDelete(course?._id)} className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold">
                                         <BsTrash />
                                     </button>
                                 </td>

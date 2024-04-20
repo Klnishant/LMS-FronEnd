@@ -30,7 +30,7 @@ export const getCourses = createAsyncThunk("/get/course", async ()=> {
     }
 });
 
-const deleteCourse = createAsyncThunk("/course/delete", async (id)=> {
+export const deleteCourse = createAsyncThunk("/course/delete", async (id)=> {
     try {
         const res = await axiosInstance.delete(`/course/delete/c/${id}`);
         toast.success("Course deleted successfully");
