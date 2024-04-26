@@ -1,14 +1,25 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getCourses } from "../../Redux/Slices/courseSlice";
+import { getProfile } from '../../Redux/Slices/AuthSlice'
 function CourseDetails() {
     const {state} = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     let {role,data} = useSelector((state)=>state?.auth);
 
     if (typeof(data)=="string") {
         data = JSON.parse(data);
     }
+
+    useEffect(()=>{
+        async ()=>{
+            await dispatch(getCourses());
+            await dispatch(getProfile());
+        }
+    })
 
   return (
     <>
