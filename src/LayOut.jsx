@@ -6,9 +6,11 @@ import Footer from './Components/Footer/Footer'
 function LayOut() {
   return (
     <>
+        <div className='min-h-screen overflow-y-auto'>
         <Header />
         <Outlet />
         <Footer />
+        </div>
     </>
   )
 }

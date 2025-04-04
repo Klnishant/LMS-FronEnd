@@ -75,98 +75,130 @@ function DashBoard() {
 
   return (
     <>
-        <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
+        <div className="min-h-[90vh] pt-5 flex flex-col md:flex-wrap gap-10 text-white">
             <h1 className="text-center text-5xl font-semibold text-yellow-500">
                 Admin Dashboard
             </h1>
-            <div className="grid grid-cols-2 gap-5 m-auto mx-10">
-                <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-                    <div className="w-80 h-80">
-                        <Pie data={userData} />
-                    </div>
-                    <div className="grid grid-cols-2 gap-5">
-                        <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                            <div className="flex flex-col items-center">
-                                <p className="font-semibold">Registerd Users</p>
-                                <h3 className="text-4xl font-bold">{data?.userCount}</h3>
-                            </div>
-                            <FaUsers  className="text-green-500 text-5xl"/>
-                        </div>
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:mx-auto md:w-[90%] lg:w-[80%] xl:w-[70%] p-5">
+    {/* Left Section */}
+    <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
+        {/* Pie Chart */}
+        <div className="w-full md:w-80 md:h-80">
+            <Pie data={userData} />
+        </div>
+        
+        {/* Registered Users Box */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5 p-5">
+            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md w-full">
+                <div className="flex flex-col items-center">
+                    <p className="font-semibold">Registered Users</p>
+                    <h3 className="text-4xl font-bold">{data?.userCount}</h3>
                 </div>
-                <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-                    <div className="h-80 w-full relative">
-                        <Bar className="absolute bottom-0 h-80 w-full" data={salesData} />
-                    </div>
-                    <div className="grid grid-cols-2 gap-5">
-                        <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                            <div className="flex flex-col items-center">
-                                <p className="font-semibold">Subscription Count</p>
-                                <h3 className="text-4xl font-bold">{allPayments?.allPayment?.count}</h3>
-                            </div>
-                            <FcSalesPerformance className="text-yellow-500 text-5xl" />
-                        </div>
-                        <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                            <div className="flex flex-col items-center">
-                                <p className="font-semibold">Total revenue</p>
-                                <h3 className="text-4xl font-bold">{allPayments?.allPayment?.count * 499}</h3>
-                            </div>
-                            <GiMoneyStack className="text-green-500 text-5xl" />
-                        </div>
-                    </div>
-                </div>
+                <FaUsers className="text-green-500 text-5xl shrink-0" />
             </div>
-            <div className="mx-[10%] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10">
-                <div className="flex w-full items-center justify-between">
-                    <h1 className="text-center text-3xl font-semibold">Course overview</h1>
-                    <button onClick={()=>{
-                        navigate("/create/course");
-                    }}
-                    className="w-fit bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 rounded py-2 px-4 font-semibold text-lg cursor-pointer"
-                    >
-                        Create New Course
-                    </button>
+        </div>
+    </div>
+
+    {/* Right Section */}
+    <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
+        {/* Bar Chart */}
+        <div className="h-40 md:h-80 w-full relative">
+            <Bar className="absolute bottom-0 h-40 md:h-80 w-full border" data={salesData} />
+        </div>
+
+        {/* Subscription & Revenue Stats */}
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {/* Subscription Count */}
+            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md w-full">
+                <div className="flex flex-col items-center">
+                    <p className="font-semibold">Subscription Count</p>
+                    <h3 className="text-4xl font-bold">{allPayments?.allPayment?.count}</h3>
                 </div>
-                <table className="table overflow-x-scroll">
-                    <thead>
-                        <tr>
-                            <th>S no.</th>
-                            <th>Course title</th>
-                            <th>Course category</th>
-                            <th>Instrucer</th>
-                            <th>Total Lectures</th>
-                            <th>Description</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {myCourses?.map((course,idx)=>(
-                            <tr key={course?._id}>
-                                <td>{idx+1}</td>
-                                <td>
-                                    <textarea readOnly value={course?.title} className="w-40 h-auto bg-transparent resize-none"></textarea>
-                                </td>
-                                <td>{course?.category}</td>
-                                <td>{course?.createdBy}</td>
-                                <td>{course?.numberOfLectures}</td>
-                                <td className="max-w-30 overflow-hidden text-ellipsis whitespace-nowrap">
-                                    <textarea value={course?.description} readOnly className="w-full h-auto bg-transparent resize-none"></textarea>
-                                </td>
-                                <td className="flex items-center gap-4">
-                                    <button onClick={()=>{navigate("/course/displaylectures",{state:{...course}})}}
-                                    className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
-                                    >
-                                        <BsCollectionPlayFill />
-                                    </button>
-                                    <button onClick={()=>handleDelete(course?._id)} className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold">
-                                        <BsTrash />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <FcSalesPerformance className="text-yellow-500 text-5xl" />
             </div>
+
+            {/* Total Revenue */}
+            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md w-full">
+                <div className="flex flex-col items-center">
+                    <p className="font-semibold">Total Revenue</p>
+                    <h3 className="text-4xl font-bold">{allPayments?.allPayment?.count * 499}</h3>
+                </div>
+                <GiMoneyStack className="text-green-500 text-5xl" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div className="w-full px-4 md:px-10 lg:px-20 flex flex-col items-center gap-10 mb-10">
+    {/* Header Section */}
+    <div className="flex flex-col md:flex-row w-full items-center justify-between gap-5">
+        <h1 className="text-center text-2xl md:text-3xl font-semibold">Course Overview</h1>
+        <button 
+            onClick={() => navigate("/create/course")}
+            className="bg-yellow-500 hover:bg-yellow-600 transition-all duration-300 rounded py-2 px-4 font-semibold text-lg cursor-pointer"
+        >
+            Create New Course
+        </button>
+    </div>
+
+    {/* Table Container for Horizontal Scroll on Small Screens */}
+    <div className="w-full overflow-x-auto">
+        <table className="table-auto w-full border border-gray-300 shadow-lg rounded-lg">
+            <thead className="">
+                <tr className="text-left">
+                    <th className="p-3">S no.</th>
+                    <th className="p-3">Course Title</th>
+                    <th className="p-3">Category</th>
+                    <th className="p-3">Instructor</th>
+                    <th className="p-3">Lectures</th>
+                    <th className="p-3">Description</th>
+                    <th className="p-3 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {myCourses?.map((course, idx) => (
+                    <tr key={course?._id} className="border-t border-gray-200">
+                        <td className="p-3">{idx + 1}</td>
+                        <td className="p-3">
+                            <textarea 
+                                readOnly 
+                                value={course?.title} 
+                                className="w-40 h-auto bg-transparent resize-none"
+                            ></textarea>
+                        </td>
+                        <td className="p-3">{course?.category}</td>
+                        <td className="p-3">{course?.createdBy}</td>
+                        <td className="p-3">{course?.numberOfLectures}</td>
+                        <td className="p-3 max-w-xs truncate">
+                            <textarea 
+                                readOnly 
+                                value={course?.description} 
+                                className="w-full h-auto no-scrollbar border-none focus:outline-none bg-transparent resize-none"
+                            ></textarea>
+                        </td>
+                        <td className="p-3 flex items-center justify-center gap-4">
+                            {/* View Lectures Button */}
+                            <button 
+                                onClick={() => navigate("/course/displaylectures", { state: { ...course } })}
+                                className="bg-green-500 hover:bg-green-600 transition-all duration-300 text-xl py-2 px-4 rounded-md font-bold"
+                            >
+                                <BsCollectionPlayFill />
+                            </button>
+                            {/* Delete Button */}
+                            <button 
+                                onClick={() => handleDelete(course?._id)} 
+                                className="bg-red-500 hover:bg-red-600 transition-all duration-300 text-xl py-2 px-4 rounded-md font-bold"
+                            >
+                                <BsTrash />
+                            </button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+</div>
+
         </div>
     </>
   )

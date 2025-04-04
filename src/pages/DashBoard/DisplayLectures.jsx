@@ -31,23 +31,23 @@ function DisplayLectures() {
     },[]);
   return (
     <>
-        <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-wihte mx-[5%]">
-            <div className="text-center text-2xl font-semibold text-yellow-500">
+        <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] md:py-10 text-wihte md:mx-[5%]">
+            <div className="md:text-center text-2xl font-semibold text-yellow-500">
                 Course Name: {state.title}
             </div>
             {(lectures && lectures.length>0) ?
-            (<div className="flex justify-center gap-10 w-full">
-                <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
+            (<div className="flex flex-col md:flex-row justify-center md:gap-10 w-screen md:w-full">
+                <div className="space-y-5 w-screen md:w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
                     <video src={lectures && lectures[currentVideo]?.lecture?.secure_url}
                      controls
                      disablePictureInPicture
                      muted
                      controlsList="nodownload"
-                     className="object-fill rounded-tl-lg rounded-tr-lg w-full" 
+                     className="md:object-fill rounded-tl-lg rounded-tr-lg md:w-full" 
                     >
 
                     </video>
-                    <div>
+                    <div >
                         <h1>
                             <span className="text-yellow-500">Title: {" "}</span>
                             {lectures && lectures[currentVideo]?.title}
@@ -59,7 +59,7 @@ function DisplayLectures() {
                     </div>
                 </div>
                 <div>
-                    <ul className="w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4">
+                    <ul className="md:w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4">
                         <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
                             <p>Lecture List</p>
                             {role === "ADMIN" && (

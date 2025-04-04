@@ -4,7 +4,7 @@ function Footer(){
     const date = new Date().getFullYear();
     return(
         <>
-            <section className=" relative left-0 bottom-0  height:[10vh] color-white width:[100vw] py-5 flex flex-col sm:flex-row items-center justify-between text-white bg-gray-800 sm:px-20">
+            <section className=" relative left-0 bottom-0  height:[10vh] color-white width:[100vw] py-5 flex flex-col gap-2 md:flex-row items-center justify-between text-white bg-gray-800 sm:px-20">
 
                 <section className="text-lg">
                     Copyright | All rights reserved {date}
